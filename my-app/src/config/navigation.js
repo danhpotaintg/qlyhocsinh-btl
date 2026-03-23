@@ -6,7 +6,8 @@ export const MENU_CONFIG = {
       title: 'Quản lý tài khoản',
       children: [
         { title: 'Danh sách tài khoản', path: '/admin/users' },
-        { title: 'Tạo tài khoản', path: '/admin/users/create' },
+        { title: 'Tạo tài khoản giáo viên', path: '/admin/users/create-teacher' },
+        { title: 'Tạo tài khoản học sinh', path: '/admin/users/create-student' },
         { title: 'Xoá tài khoản', path: '/admin/users/delete' },
         { title: 'Thay đổi thông tin', path: '/admin/users/edit' },
         { title: 'Đặt lại mật khẩu', path: '/admin/users/reset-password' },

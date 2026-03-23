@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-
+import UserList from "./admin components/ListUser";
+import CreateTeacher from './admin components/CreateTeacher';
+import CreateStudent from "./admin components/CreateStudent";
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
 
@@ -38,6 +40,9 @@ function App() {
               </div>
             } />
 
+             <Route path="admin/users" element={<UserList />} /> 
+             <Route path="admin/users/create-teacher" element={<CreateTeacher />} /> 
+             <Route path="admin/users/create-student" element={<CreateStudent />} /> 
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>
         )}

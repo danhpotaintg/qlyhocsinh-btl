@@ -30,17 +30,20 @@ export default function Login({ onLogin }) {
     headers: { Authorization: `Bearer ${token}` }
   });
 
-  const role = userResponse.data.result.roles[0]; // lấy role đầu tiên
+  const role = userResponse.data.result.role; // lấy role đầu tiên
   localStorage.setItem('role', role);
 
   onLogin(role);
 
 } catch (err) {
-  if (err.response && err.response.status === 401) {
-    setError('Sai tên đăng nhập hoặc mật khẩu!');
+  if (err.response) {
+    const backendMessage = err.response.data?.message;
+    setError(backendMessage || 'Đã có lỗi xảy ra!');
   } else {
     setError('Không thể kết nối đến Server. Vui lòng thử lại sau!');
   }
+  }finally{
+    setIsLoading(false);
   }
 };
 

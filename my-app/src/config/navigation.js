@@ -36,11 +36,7 @@ export const MENU_CONFIG = {
       children: [
         { title: 'Xem thông tin cá nhân', path: '/profile/teacher-info' },
         { title: 'Cập nhật ảnh đại diện', path: '/profile/avatar' },
-<<<<<<< HEAD
-        { title: 'Cập nhật thông tin', path: '/profile/edit' },
-=======
         { title: 'Cập nhật thông tin', path: '/profile/teacher-update' },
->>>>>>> 576c95d (chinh sua tí ti)
       ]
     },
     {
@@ -67,11 +63,7 @@ export const MENU_CONFIG = {
       children: [
         { title: 'Xem thông tin cá nhân', path: '/profile/student-info' },
         { title: 'Cập nhật ảnh đại diện', path: '/profile/avatar' },
-<<<<<<< HEAD
-        { title: 'Cập nhật thông tin', path: '/profile/edit' },
-=======
         { title: 'Cập nhật thông tin', path: '/profile/student-update' },
->>>>>>> 576c95d (chinh sua tí ti)
       ]
     },
     {

@@ -3,18 +3,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-<<<<<<< HEAD
-import UserList from "./admin components/ListUser";
-import CreateTeacher from './admin components/CreateTeacher';
-import CreateStudent from "./admin components/CreateStudent";
-import CreateClass from "./admin components/CreateClass";
-import NewPassword from "./admin components/NewPassword";
-
-import StudentInfo from './student components/StudentInfo'; 
-
-import TeacherInfo from './teacher componets/TeacherInfo';
-
-=======
 import UserList from "./admin-components/ListUser";
 import CreateTeacher from './admin-components/CreateTeacher';
 import CreateStudent from "./admin-components/CreateStudent";
@@ -26,7 +14,6 @@ import StudentUpdate from './student-components/StudentUpdate';
 
 import TeacherInfo from './teacher-components/TeacherInfo';
 import TeacherUpdate from './teacher-components/TeacherUpdate';
->>>>>>> 576c95d (chinh sua tí ti)
 
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
@@ -37,17 +24,10 @@ function App() {
   };
 
   const handleLogout = () => {
-<<<<<<< HEAD
-    // Xóa state và dọn dẹp LocalStorage
-    setRole(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-=======
   setRole(null);
   localStorage.removeItem('token');
   localStorage.removeItem('role');
   window.location.href = '/';
->>>>>>> 576c95d (chinh sua tí ti)
   };
 
   return (
@@ -76,14 +56,10 @@ function App() {
              <Route path="admin/users/reset-password" element={<NewPassword />} /> 
 
              <Route path="profile/student-info" element={<StudentInfo />} /> 
-<<<<<<< HEAD
-             <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
-=======
              <Route path="profile/student-update" element={<StudentUpdate />} />
 
              <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
              <Route path="profile/teacher-update" element={<TeacherUpdate />} />
->>>>>>> 576c95d (chinh sua tí ti)
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>
         )}

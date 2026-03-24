@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
+import ChangePassword from './pages/ChangePassword';
+
 import UserList from "./admin-components/ListUser";
 import CreateTeacher from './admin-components/CreateTeacher';
 import CreateStudent from "./admin-components/CreateStudent";
@@ -40,6 +42,7 @@ function App() {
           /* Nếu đã đăng nhập, bọc tất cả bằng Layout */
           <Route path="/" element={<Layout userRole={role} onLogout={handleLogout} />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="change-password" element={<ChangePassword />} />
             
             {/* Tạo trang Dashboard chung làm ví dụ */}
             <Route path="dashboard" element={

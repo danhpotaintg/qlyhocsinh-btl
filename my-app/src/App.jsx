@@ -10,6 +10,7 @@ import CreateTeacher from './admin-components/CreateTeacher';
 import CreateStudent from "./admin-components/CreateStudent";
 import CreateClass from "./admin-components/CreateClass";
 import NewPassword from "./admin-components/NewPassword";
+import DeleteAcc from "./admin-components/DeleteUser";
 
 import StudentInfo from './student-components/StudentInfo'; 
 import StudentUpdate from './student-components/StudentUpdate';
@@ -57,6 +58,7 @@ function App() {
              <Route path="admin/users/create-student" element={<CreateStudent />} /> 
              <Route path="admin/classes/create" element={<CreateClass />} /> 
              <Route path="admin/users/reset-password" element={<NewPassword />} /> 
+             <Route path="admin/users/delete" element={<DeleteAcc />} />  
 
              <Route path="profile/student-info" element={<StudentInfo />} /> 
              <Route path="profile/student-update" element={<StudentUpdate />} />

@@ -43,6 +43,7 @@ export default function ChangePassword() {
     try {
       const token = localStorage.getItem('token');
       
+      // 3. Payload gửi kèm cả oldPassword và password mới
       const payload = {
         oldPassword: formData.oldPassword,
         password: formData.newPassword 
@@ -59,8 +60,8 @@ export default function ChangePassword() {
       
 
     } catch (error) {
-
-        const errorResponse = error.response?.data?.message;
+      // Xử lý thông báo lỗi từ Backend (ví dụ: PASSWORD_INCORRECT)
+      const errorResponse = error.response?.data?.message;
       let friendlyMsg = 'Có lỗi xảy ra khi đổi mật khẩu!';
       
       if (errorResponse === 'PASSWORD_INCORRECT') {

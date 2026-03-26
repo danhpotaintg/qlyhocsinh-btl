@@ -17,6 +17,7 @@ import StudentUpdate from './student-components/StudentUpdate';
 
 import TeacherInfo from './teacher-components/TeacherInfo';
 import TeacherUpdate from './teacher-components/TeacherUpdate';
+import TeacherUploadAvatar from './teacher-components/TeacherUploadAvatar';
 
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
@@ -65,6 +66,7 @@ function App() {
 
              <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
              <Route path="profile/teacher-update" element={<TeacherUpdate />} />
+             <Route path="profile/avatar" element={<TeacherUploadAvatar/>} />
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>
         )}

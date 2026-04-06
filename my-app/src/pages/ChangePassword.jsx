@@ -43,6 +43,7 @@ export default function ChangePassword() {
     try {
       const token = localStorage.getItem('token');
       
+      // 3. Payload gửi kèm cả oldPassword và password mới
       const payload = {
         oldPassword: formData.oldPassword,
         password: formData.newPassword 

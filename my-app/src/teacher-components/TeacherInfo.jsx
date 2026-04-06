@@ -47,15 +47,17 @@ export default function TeacherInfo(){
                             <th className="border p-2">Họ và tên</th>
                             <th className="border p-2">Ngày sinh</th>
                             <th className="border p-2">Giới tính</th>
-                            <th className="border p-2">Môn dạy</th>
+                            <th className="border p-2">Email</th>
+                            <th className="border p-2">Số điện thoại</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className="hover:bg-gray-50">
-                            <td className="border p-2 text-center w-16">{data.fullName}</td>
-                            <td className="border p-2 text-center w-16">{data.dob}</td>
-                            <td className="border p-2 text-center w-16">{gender[data.gender]}</td>
-                            <td className="border p-2 text-center w-16">{subject[data.subjectName]}</td>
+                            <td className="border p-2">{data.fullName}</td>
+                            <td className="border p-2">{data.dob}</td>
+                            <td className="border p-2">{data.gender}</td>
+                            <td className="border p-2">{data.email}</td>
+                            <td className="border p-2">{data.phoneNumber}</td>
                         </tr>
                     </tbody>
                 </table>

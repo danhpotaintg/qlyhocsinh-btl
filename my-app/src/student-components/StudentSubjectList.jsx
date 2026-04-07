@@ -31,7 +31,7 @@ export default function StudentSubjectList() {
 
     useEffect(()=>{
         fetchSubjectList();
-    }, [])
+    }, [semester])
     
 
     
@@ -55,19 +55,27 @@ export default function StudentSubjectList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {subjectList.map(data => (
-                        <tr className="hover:bg-gray-50 text-center">
-                            <td className="border p-2">{subject[data.subjectName]}</td>
-                            <td className="border p-2"> 
-                                <Link 
-                                    to={`/student/grade/${data.id}/${semester}`} 
-                                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                                >
-                                    Xem điểm
-                                </Link>
+                    {subjectList && subjectList.length > 0 ? (
+                        subjectList.map(data => (
+                            <tr key={data.id} className="hover:bg-gray-50 text-center">
+                                <td className="border p-2">{subject[data.subjectName] || data.subjectName}</td>
+                                <td className="border p-2"> 
+                                    <Link 
+                                        to={`/student/grade/${data.id}/${semester}`} 
+                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                    >
+                                        Xem điểm
+                                    </Link>
+                                </td>
+                            </tr>  
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="2" className="border p-10 text-center text-gray-500 italic">
+                                Không tìm thấy danh sách môn học cho học kỳ {semester}.
                             </td>
-                        </tr>  
-                    ))}
+                        </tr>
+                    )}
                     
                 </tbody>
             </table>

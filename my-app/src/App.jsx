@@ -68,7 +68,7 @@ function App() {
              <Route path="admin/users/create-teacher" element={<CreateTeacher />} /> 
              <Route path="admin/users/create-student" element={<CreateStudent />} /> 
              <Route path="admin/classes/create" element={<CreateClass />} /> 
-             <Route path="admin/users/reset-password" element={<NewPassword />} /> 
+            
              <Route path="admin/users/delete" element={<DeleteAcc />} /> 
              <Route path="admin/users/edit" element={<UserUpdate />} /> 
              <Route path="admin/classes/assign-student" element={<StudentClass />} /> 

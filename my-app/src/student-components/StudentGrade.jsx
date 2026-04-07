@@ -28,9 +28,7 @@ export default function StudentGrade() {
             setGradeData(response.data.result);
 
         }catch(error){
-            const backendMessage = error.response?.data?.message;
-            setErr(backendMessage || "Không thể tải danh sách môn học");
-            setTimeout(() => setErr(''), 5000);
+            console.error("Môn này chưa có điểm", error);
         }
     }
     useEffect(() => {
@@ -39,7 +37,6 @@ export default function StudentGrade() {
 
     return (
         <div className="p-4">
-            {err && <div className="text-red-500 bg-red-50 p-2 rounded mb-4">{err}</div>}
 
             <h2 className="text-2xl font-bold mb-6 text-blue-700">
                 Kết quả học tập: {subject[gradeData?.subjectName]}

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function CreateStudent() {
-  // 1. Khởi tạo state chuẩn (đảm bảo tên trùng khít với name của input)
+ 
   const [formData, setFormData] = useState({
     fullName: "",
     dob: "",
     parentGmail: "",
-    parentPhonenumber: "", // Sửa lại chữ n thường cho đồng bộ
+    parentPhonenumber: "", 
     gender: "",
+    className: "",
     academicYear: "",
   });
 
@@ -33,13 +34,14 @@ export default function CreateStudent() {
 
       // 2. Gửi request chuẩn xác
       const response = await axios.post(
-        "http://localhost:8080/quanly/students", // Nhớ kiểm tra lại URL có /quanly không
+        "/quanly/students", // Nhớ kiểm tra lại URL có /quanly không
         {
           fullName: formData.fullName,
           dob: formData.dob,
           parentGmail: formData.parentGmail,
           parentPhonenumber: formData.parentPhonenumber,
           gender: formData.gender,
+          className: formData.className,
           academicYear: parseInt(formData.academicYear), // Phải lấy đúng giá trị và chuyển về số
         },
         {
@@ -56,6 +58,7 @@ export default function CreateStudent() {
         parentGmail: "",
         parentPhonenumber: "",
         gender: "",
+        className: "",
         academicYear: "",
       });
     } catch (err) {
@@ -74,7 +77,7 @@ export default function CreateStudent() {
         <input name="dob" type="date" value={formData.dob} onChange={handleChange} />
         <input name="parentGmail" type="email" value={formData.parentGmail} onChange={handleChange} placeholder="Email phụ huynh" />
         <input name="parentPhonenumber" type="text" value={formData.parentPhonenumber} onChange={handleChange} placeholder="Số điện thoại phụ huynh" />
-        
+        <input name="className" type="text" value={formData.className} onChange={handleChange} placeholder="Tên lớp" />
         {/* Academic Year là quan quan trọng để Backend sinh mã K22... */}
         <input name="academicYear" type="number" value={formData.academicYear} onChange={handleChange} placeholder="Khóa (VD: 2022)" />
 

@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function CreateTeacher() {
+  const subject = {
+    "Toán" : "Math",
+    "Tiếng Anh": "English",
+    "Vật lý": "Physics",
+    "Hoá học": "Chemistry",
+    "Ngữ văn": "literature" 
+  }
+  
   const [formData, setFormData] = useState({
     fullName: "",
     dob: "",
@@ -37,7 +45,7 @@ export default function CreateTeacher() {
           gender: formData.gender,
           email: formData.email,
           phoneNumber: formData.phoneNumber,
-          subjectName: formData.subjectName,
+          subjectName: subject[formData.subjectName],
         },
         {
           headers: { Authorization: `Bearer ${token}` },

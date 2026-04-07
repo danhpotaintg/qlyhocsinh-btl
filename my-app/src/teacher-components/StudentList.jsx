@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import {Link} from "react-router-dom";
 
-export default function AttendanceStudentList(){
-    const {classId} = useParams();
+export default function StudentList(){
+    const gender = {
+        "MALE": "Nam",
+        "FEMALE": "Nữ"
+    }
+
+    const {classId, className} = useParams();
 
     const [stuData, setStuData] = useState([]);
     const [err, setErr] = useState("")
@@ -17,30 +23,31 @@ export default function AttendanceStudentList(){
 
             setStuData(response.data.result);
         }catch(err){
-            const backendMessage = response?.data?.message;
+            const backendMessage = err?.data?.message;
             setErr(backendMessage || "Không thể tải danh sách học sinh");
             setTimeout(() => setErr(''), 5000);
         }
     }
 
     useEffect(() => {
-        fetchStuData();
-    }, []);
+        if (classId) {
+            fetchStuData();
+        }
+    }, [classId]);
 
 
     return(
         <div>
             {err && <p style={{ color: 'red' }}>{err}</p>}
             
-            <h2 className="text-2xl font-bold mb-4 text-blue-600">Danh sách học sinh</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-600">Danh sách học sinh lớp {className}</h2>
             <table className="w-full border-collapse border border-gray-300">
                 <thead className="bg-blue-600 text-white">
                     <tr>
                         <th className="border p-2">Họ và tên</th>
                         <th className="border p-2">Ngày sinh</th>
                         <th className="border p-2">Giới tính</th>
-                        <th className="border p-2">Số điện thoại phụ huynh</th>
-                        <th className="border p-2">Điểm danh</th>
+                        <th className="border p-2">Nhập điểm</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,9 +55,15 @@ export default function AttendanceStudentList(){
                         <tr key={user.id} className="hover:bg-gray-50">
                             <td className="border p-2 text-center w-16">{user.fullName}</td>
                             <td className="border p-2 text-center w-16">{user.dob}</td>
-                            <td className="border p-2 text-center w-16">{user.gender}</td>
-                            <td className="border p-2 text-center w-16">{user.parentPhonenumber}</td>
-                            <td className="border p-2 text-center w-16"></td>
+                            <td className="border p-2 text-center w-16">{gender[user.gender]}</td>
+                            <td className="border p-2 text-center w-16">
+                                <Link 
+                                    to={`/teacher/grade/${user.id}`} 
+                                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                >
+                                    Nhập
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -22,7 +22,12 @@ import TeacherInfo from './teacher-components/TeacherInfo';
 import TeacherUpdate from './teacher-components/TeacherUpdate';
 import TeacherUploadAvatar from './teacher-components/TeacherUploadAvatar';
 import Attendance from './teacher-components/Attendance';
-import AttendanceStudentList from './teacher-components/AttendanceStudentList';
+import AttendanceDetail from "./teacher-components/AttendanceDetail";
+import StudentList from './teacher-components/StudentList';
+import Grade from "./teacher-components/Grade";
+import GradeEntry from "./teacher-components/GradeEntry";
+import StudentSubjectList from './student-components/StudentSubjectList';
+import StudentGrade from './student-components/StudentGrade';
 
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
@@ -71,13 +76,18 @@ function App() {
 
              <Route path="profile/student-info" element={<StudentInfo />} /> 
              <Route path="profile/student-update" element={<StudentUpdate />} />
+             <Route path="/student/grades" element={<StudentSubjectList />} />
+             <Route path="/student/grade/:subjectId/:semester" element={<StudentGrade />} />
 
              <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
              <Route path="profile/teacher-update" element={<TeacherUpdate />} />
              <Route path="profile/avatar" element={<TeacherUploadAvatar/>} />
              <Route path="teacher/attendance" element={<Attendance />} /> 
-             <Route path="teacher/attendance/:classId" element={<AttendanceStudentList />} /> 
-             
+             <Route path="teacher/attendance/:classId/:className" element={<AttendanceDetail />} />
+             <Route path="teacher/grades" element={<Grade />} />  
+             <Route path="teacher/class/:classId/:className" element={<StudentList />} />
+             <Route path="teacher/grade/:studentId" element={<GradeEntry />} />
+
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>
         )}

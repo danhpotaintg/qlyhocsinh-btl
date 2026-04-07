@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 
 export default function Attendance(){
-    const [stucData, setStuData] = useState([]);
     const [classData, setClassData] = useState([]);
     const [err, setErr] = useState("")
 
@@ -16,7 +15,7 @@ export default function Attendance(){
 
             setClassData(response.data.result);
         }catch(err){
-            const backendMessage = response?.data?.message;
+            const backendMessage = err?.data?.message;
             setErr(backendMessage || "Không thể tải danh sách lớp");
             setTimeout(() => setErr(''), 5000);
         }
@@ -50,7 +49,7 @@ export default function Attendance(){
                             <td className="border p-2 text-center w-16">{clas.academicYear}</td>
                             <td className="border p-2 text-center w-16">
                                 <Link 
-                                    to={`/teacher/attendance/${clas.id}/${clas.className}`} 
+                                    to={`/teacher/class/${clas.id}/${clas.className}`} 
                                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                                 >
                                     Xem danh sách

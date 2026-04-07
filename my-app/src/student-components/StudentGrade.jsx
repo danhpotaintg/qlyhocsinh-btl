@@ -1,0 +1,99 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+export default function StudentGrade() {
+    const subject = {
+        "Math": "Toán",
+        "English": "Tiếng Anh",
+        "Physics": "Vật lý",
+        "Chemistry": "Hoá học",
+        "Literature": "Ngữ văn" 
+    }
+
+    const [err, setErr] = useState("");
+    const [gradeData, setGradeData] = useState(null);
+
+    const {subjectId, semester} = useParams();
+
+    const fetchGradeData = async() => {
+        try{
+            if (!subjectId) return;
+
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`/quanly/grades/student/subject/${subjectId}?semester=${semester}`,{
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            setGradeData(response.data.result);
+
+        }catch(error){
+            const backendMessage = error.response?.data?.message;
+            setErr(backendMessage || "Không thể tải danh sách môn học");
+            setTimeout(() => setErr(''), 5000);
+        }
+    }
+    useEffect(() => {
+        fetchGradeData();
+    }, [subjectId, semester])
+
+    return (
+        <div className="p-4">
+            {err && <div className="text-red-500 bg-red-50 p-2 rounded mb-4">{err}</div>}
+
+            <h2 className="text-2xl font-bold mb-6 text-blue-700">
+                Kết quả học tập: {subject[gradeData?.subjectName]}
+            </h2>
+
+            <div className="overflow-x-auto shadow-md rounded-lg">
+                <table className="w-full border-collapse bg-white">
+                    <thead className="bg-blue-600 text-white">
+                        <tr>
+                            <th className="border p-3 text-left">Loại điểm</th>
+                            <th className="border p-3 text-center">Hệ số</th>
+                            <th className="border p-3 text-left">Điểm số</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {gradeData?.gradeConfigs && gradeData.gradeConfigs.length > 0 ? (
+                            gradeData.gradeConfigs.map((config) => (
+                                <tr key={config.gradeConfigId} className="hover:bg-gray-50 border-b">
+                                    <td className="border p-3 font-medium">
+                                        {config.scoreType === 'thuong_xuyen' ? 'Điểm thường xuyên' : 
+                                         config.scoreType === 'giua_ky' ? 'Kiểm tra giữa kỳ' : 
+                                         config.scoreType === 'cuoi_ky' ? 'Kiểm tra cuối kỳ' : config.scoreType}
+                                    </td>
+                                    <td className="border p-3 text-center text-gray-600">
+                                        {config.weight}
+                                    </td>
+                                    <td className="border p-3">
+                                        <div className="flex flex-wrap gap-2">
+                                            {config.scores && config.scores.length > 0 ? (
+                                                config.scores.map((score, index) => (
+                                                    <span 
+                                                        key={index} 
+                                                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold shadow-sm"
+                                                    >
+                                                        {score}
+                                                    </span>
+                                                ))
+                                            ) : (
+                                                <span className="text-gray-400 italic">Chưa có điểm</span>
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="3" className="text-center p-10 text-gray-500">
+                                    Môn học này chưa có điểm.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}

@@ -52,8 +52,8 @@ export const MENU_CONFIG = {
     {
       title: 'Xem thời khoá biểu',
       children: [
-        { title: 'Xem theo ngày', path: '/schedule/daily' },
-        { title: 'Xem theo tuần', path: '/schedule/weekly' },
+        { title: 'Xem theo ngày', path: '/teacher/schedule/daily' },
+        { title: 'Xem theo tuần', path: '/teacher/schedule/weekly' },
       ]
     },
     { title: 'Gửi thông báo tới phụ huynh', path: '/teacher/notifications' }
@@ -79,8 +79,8 @@ export const MENU_CONFIG = {
     {
       title: 'Xem thời khoá biểu',
       children: [
-        { title: 'Xem theo ngày', path: '/schedule/daily' },
-        { title: 'Xem theo tuần', path: '/schedule/weekly' },
+        { title: 'Xem theo ngày', path: '/student/schedule/daily' },
+        { title: 'Xem theo tuần', path: '/student/schedule/weekly' },
       ]
     },
     { title: 'Thủ tục hành chính', path: '/student/administrative' }

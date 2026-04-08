@@ -9,7 +9,6 @@ import UserList from "./admin-components/ListUser";
 import CreateTeacher from './admin-components/CreateTeacher';
 import CreateStudent from "./admin-components/CreateStudent";
 import CreateClass from "./admin-components/CreateClass";
-import NewPassword from "./admin-components/NewPassword";
 import DeleteAcc from "./admin-components/DeleteUser";
 import UserUpdate from './admin-components/UserUpdate';
 import StudentClass from './admin-components/StudentClass';
@@ -28,6 +27,8 @@ import Grade from "./teacher-components/Grade";
 import GradeEntry from "./teacher-components/GradeEntry";
 import StudentSubjectList from './student-components/StudentSubjectList';
 import StudentGrade from './student-components/StudentGrade';
+import StudentSchedule from './student-components/StudentSchedules';
+import TeacherSchedule from './teacher-components/TeacherSchedules';
 
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
@@ -78,6 +79,7 @@ function App() {
              <Route path="profile/student-update" element={<StudentUpdate />} />
              <Route path="/student/grades" element={<StudentSubjectList />} />
              <Route path="/student/grade/:subjectId/:semester" element={<StudentGrade />} />
+             <Route path="/student/schedule/weekly" element={<StudentSchedule />} />
 
              <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
              <Route path="profile/teacher-update" element={<TeacherUpdate />} />
@@ -87,6 +89,7 @@ function App() {
              <Route path="teacher/grades" element={<Grade />} />  
              <Route path="teacher/class/:classId/:className" element={<StudentList />} />
              <Route path="teacher/grade/:studentId" element={<GradeEntry />} />
+             <Route path="/teacher/schedule/weekly" element={<TeacherSchedule />} />
 
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>

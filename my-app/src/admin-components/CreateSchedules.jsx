@@ -49,7 +49,7 @@ export default function CreateSchedules(){
         if (!classId || classId === "null") return;
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`/quanly/schedules/${classId}`,{
+            const response = await axios.get(`/quanly/schedules/class/${classId}`,{
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSchedules(response.data.result);

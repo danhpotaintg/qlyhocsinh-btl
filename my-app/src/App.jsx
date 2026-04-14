@@ -35,7 +35,7 @@ import ListLeaveRequest from './teacher-components/ListLeaveRequest';
 import CreateLeaveRequest from './student-components/CreateLeaveRequest';
 import TeacherSubstitution from "./admin-components/TeacherSubstitution";
 import AssignTeacher from "./admin-components/AssignTeacher";
-
+import TeacherNotifications from './teacher-components/TeacherNotifications';
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
 
@@ -102,6 +102,7 @@ function App() {
              <Route path="teacher/grade/:studentId" element={<GradeEntry />} />
              <Route path="teacher/schedule/weekly" element={<TeacherSchedule />} />
              <Route path="teacher/approvals" element={<ListLeaveRequest />} />
+             <Route path="teacher/notifications" element={<TeacherNotifications />} />
              
 
             {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}

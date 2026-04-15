@@ -29,7 +29,8 @@ export const MENU_CONFIG = {
         { title: 'Báo cáo tài chính', path: '/admin/stats/finance' },
       ]
     },
-    { title: 'Phê duyệt đơn', path: '/admin/approvals' } // Không có menu con
+    { title: 'Phê duyệt đơn', path: '/admin/approvals' },
+    { title: 'Gửi thông báo chung', path: '/admin/notifications' } // Đã thêm phần này
   ],
   
   teacher: [
@@ -49,13 +50,9 @@ export const MENU_CONFIG = {
         { title: 'Đổi vị trí', path: '/teacher/seats' },
       ]
     },
-    {
-      title: 'Xem thời khoá biểu', path: '/teacher/schedule/weekly'
-      
-    },
+    { title: 'Xem thời khoá biểu', path: '/teacher/schedule/weekly' },
     { title: 'Phê duyệt đơn', path: '/teacher/approvals' },
-
-    { title: 'Gửi thông báo tới phụ huynh', path: '/teacher/notifications' }
+    { title: 'Gửi thông báo cho lớp', path: '/teacher/notifications' } // Đã chuẩn hoá tên
   ],
 
   student: [
@@ -75,10 +72,7 @@ export const MENU_CONFIG = {
         { title: 'Nhận lời khuyên', path: '/student/advice' },
       ]
     },
-    {
-      title: 'Xem thời khoá biểu', path: '/student/schedule/weekly'
-      
-    },
+    { title: 'Xem thời khoá biểu', path: '/student/schedule/weekly' },
     { title: 'Gửi đơn xin nghỉ phép', path: '/student/leave-request' },
     { title: 'Thủ tục hành chính', path: '/student/administrative' }
   ]

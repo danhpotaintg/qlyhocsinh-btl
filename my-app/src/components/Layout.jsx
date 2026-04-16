@@ -2,6 +2,7 @@
 import React, { useState } from 'react'; 
 import { useNavigate, Outlet } from 'react-router-dom';
 import { MENU_CONFIG } from '../config/navigation';
+import NotificationBell from './NotificationBell';
 
 export default function Layout({ userRole, onLogout }) {
   const navigate = useNavigate();
@@ -69,6 +70,9 @@ export default function Layout({ userRole, onLogout }) {
               <span className="text-xs text-gray-500">Trực tuyến</span>
             </div>
             
+            {/* COMPONENT NÚT CHUÔNG */}
+            <NotificationBell />
+            
             <button 
               onClick={() => navigate('/change-password')}
               className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
@@ -77,7 +81,7 @@ export default function Layout({ userRole, onLogout }) {
             </button>
             
             <div className="relative">
-              {/* Nút Đăng xuất chính: Bấm vào thì mở bảng Confirm chứ không thoát ngay */}
+              {/* Nút Đăng xuất chính */}
               <button 
                 onClick={() => setShowLogoutConfirm(!showLogoutConfirm)}
                 className="text-sm font-medium bg-red-50 text-red-600 px-4 py-2 rounded-lg border border-red-200 hover:bg-red-500 hover:text-white transition-all"

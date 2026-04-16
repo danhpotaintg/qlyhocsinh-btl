@@ -13,6 +13,7 @@ import DeleteAcc from "./admin-components/DeleteUser";
 import UserUpdate from './admin-components/UserUpdate';
 import StudentClass from './admin-components/StudentClass';
 import HomeroomTeacherClass from './admin-components/HomeroomTeacherClass';
+import CreateNotification from './admin-components/CreateNotification'; // THÊM IMPORT NÀY
 
 import StudentInfo from './student-components/StudentInfo'; 
 import StudentUpdate from './student-components/StudentUpdate';
@@ -36,34 +37,31 @@ import CreateLeaveRequest from './student-components/CreateLeaveRequest';
 import TeacherSubstitution from "./admin-components/TeacherSubstitution";
 import AssignTeacher from "./admin-components/AssignTeacher";
 import TeacherNotifications from './teacher-components/TeacherNotifications';
+
 function App() {
   const [role, setRole] = useState(() => localStorage.getItem('role') || null);
 
   const handleLogin = (selectedRole) => {
-    // Lưu vào state và LocalStorage
     setRole(selectedRole);
   };
 
   const handleLogout = () => {
-  setRole(null);
-  localStorage.removeItem('token');
-  localStorage.removeItem('role');
-  window.location.href = '/';
+    setRole(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    window.location.href = '/';
   };
 
   return (
     <BrowserRouter>
       <Routes>
-        {/* Nếu chưa có role, bắt buộc ở trang Login */}
         {!role ? (
           <Route path="*" element={<Login onLogin={handleLogin} />} />
         ) : (
-          /* Nếu đã đăng nhập, bọc tất cả bằng Layout */
           <Route path="/" element={<Layout userRole={role} onLogout={handleLogout} />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="change-password" element={<ChangePassword />} />
             
-            {/* Tạo trang Dashboard chung làm ví dụ */}
             <Route path="dashboard" element={
               <div className="bg-white p-6 rounded shadow">
                 <h1 className="text-2xl font-bold">Đây là Dashboard của {role.toUpperCase()}</h1>
@@ -71,6 +69,24 @@ function App() {
               </div>
             } />
 
+            <Route path="admin/users" element={<UserList />} /> 
+            <Route path="admin/users/create-teacher" element={<CreateTeacher />} /> 
+            <Route path="admin/users/create-student" element={<CreateStudent />} /> 
+            <Route path="admin/classes/create" element={<CreateClass />} /> 
+            <Route path="admin/users/delete" element={<DeleteAcc />} /> 
+            <Route path="admin/users/edit" element={<UserUpdate />} /> 
+            <Route path="admin/classes/assign-student" element={<StudentClass />} /> 
+            <Route path="admin/classes/assign-teacher-class" element={<HomeroomTeacherClass />} /> 
+            <Route path="admin/classes/schedule" element={<ScheduleDetails />} /> 
+            <Route path="admin/classes/schedule/:teacherId/:classId" element={<CreateSchedules />} /> 
+            <Route path="admin/notifications" element={<CreateNotification />} />
+
+            <Route path="profile/student-info" element={<StudentInfo />} /> 
+            <Route path="profile/student-update" element={<StudentUpdate />} />
+            <Route path="student/grades" element={<StudentSubjectList />} />
+            <Route path="student/grade/:subjectId/:semester" element={<StudentGrade />} />
+            <Route path="student/schedule/weekly" element={<StudentSchedule />} />
+            <Route path="student/leave-request" element={<CreateLeaveRequest />} />
              <Route path="admin/users" element={<UserList />} /> 
              <Route path="admin/users/create-teacher" element={<CreateTeacher />} /> 
              <Route path="admin/users/create-student" element={<CreateStudent />} /> 
@@ -92,6 +108,17 @@ function App() {
              <Route path="student/schedule/weekly" element={<StudentSchedule />} />
              <Route path="student/leave-request" element={<CreateLeaveRequest />} />
 
+            <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
+            <Route path="profile/teacher-update" element={<TeacherUpdate />} />
+            <Route path="profile/avatar" element={<TeacherUploadAvatar/>} />
+            <Route path="teacher/attendance" element={<Attendance />} /> 
+            <Route path="teacher/attendance/:classId/:className" element={<AttendanceDetail />} />
+            <Route path="teacher/grades" element={<Grade />} />  
+            <Route path="teacher/class/:classId/:className" element={<StudentList />} />
+            <Route path="teacher/grade/:studentId" element={<GradeEntry />} />
+            <Route path="teacher/schedule/weekly" element={<TeacherSchedule />} />
+            <Route path="teacher/approvals" element={<ListLeaveRequest />} />
+            <Route path="teacher/notifications" element={<TeacherNotifications />} />
              <Route path="profile/teacher-info" element={<TeacherInfo />} /> 
              <Route path="profile/teacher-update" element={<TeacherUpdate />} />
              <Route path="profile/avatar" element={<TeacherUploadAvatar/>} />
@@ -105,7 +132,6 @@ function App() {
              <Route path="teacher/notifications" element={<TeacherNotifications />} />
              
 
-            {/* Bạn sẽ thêm các Route khác ở đây: /admin/users, /teacher/grades... */}
           </Route>
         )}
       </Routes>

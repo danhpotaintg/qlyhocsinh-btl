@@ -51,11 +51,11 @@ export default function HomeroomTeacherClass(){
                 }catch (err) {
                     const backendMessage = err.response?.data?.message;
                     setErr(backendMessage || 'Không thể tải danh sách lớp học!');
-                    setTimeout(() => setError(''), 3000);
+                    setTimeout(() => setErr(''), 3000);
                 }
             };
             fetchClass();
-        }, []);
+    }, []);
     
     const handleSelectChange = (teacherID, classID) =>{
         setSelectedClasses(prev => ({

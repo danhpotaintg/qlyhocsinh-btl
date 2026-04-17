@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function StudentInfo(){
+    const gender = {
+        "MALE":"Nam",
+        "FEMALE":"Nữ"
+    }
     const [data, setData] = useState();
     const [error, setError] = useState('')
 
@@ -43,6 +47,7 @@ export default function StudentInfo(){
                             <th className="border p-2">Gmail phụ huynh</th>
                             <th className="border p-2">Số điện thoại phụ huynh</th>
                             <th className="border p-2">Giới tính</th>
+                            <th className="border p-2">Lớp</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +56,8 @@ export default function StudentInfo(){
                             <td className="border p-2">{data.dob}</td>
                             <td className="border p-2">{data.parentGmail}</td>
                             <td className="border p-2">{data.parentPhonenumber}</td>
-                            <td className="border p-2">{data.gender}</td>
+                            <td className="border p-2">{gender[data.gender]}</td>
+                            <td className="border p-2">{data.classRoom.className}</td>
                         </tr>
                     </tbody>
                 </table>

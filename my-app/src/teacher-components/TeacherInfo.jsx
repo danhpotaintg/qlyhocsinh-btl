@@ -54,6 +54,7 @@ export default function TeacherInfo(){
                             <th className="border p-2">Email</th>
                             <th className="border p-2">Số điện thoại</th>
                             <th className="border p-2">Môn dạy</th>
+                            <th className="border p-2">Lớp chủ nhiệm</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,7 @@ export default function TeacherInfo(){
                             <td className="border p-2">{data.email}</td>
                             <td className="border p-2">{data.phoneNumber}</td>
                             <td className="border p-2">{subject[data.subjectName]}</td>
+                            <td className="border p-2">{data.className}</td>
                         </tr>
                     </tbody>
                 </table>

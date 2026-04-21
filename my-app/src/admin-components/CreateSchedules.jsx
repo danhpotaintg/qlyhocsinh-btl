@@ -4,13 +4,6 @@ import { useParams, Link } from 'react-router-dom';
 
 export default function CreateSchedules(){
 
-    const VNsubject = {
-        "Toán": "Math",
-        "Tiếng Anh": "English",
-        "Vật lý": "Physics",
-        "Hoá học": "Chemistry",
-        "Ngữ văn": "Literature"
-    }
     const [formData, setFormData] = useState({
             classId: "",
             subjectName: "",
@@ -29,7 +22,7 @@ export default function CreateSchedules(){
     
     const [subjectData, setSubjectData] = useState([]);
 
-    const {teacherId, classId} = useParams();
+    const {teacherId, classId, subjectName} = useParams();
     
     const [schedules, setSchedules] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -92,7 +85,7 @@ export default function CreateSchedules(){
             const response = await axios.post(`/quanly/schedules`,
                 {
                     classId: classId,
-                    subjectName: formData.subjectName,
+                    subjectName: subjectName,
                     teacherId: teacherId,
                     startLesson: parseInt(formData.startLesson),
                     endLesson: parseInt(formData.endLesson),
@@ -166,20 +159,7 @@ export default function CreateSchedules(){
                         <tbody>
                             <tr>
                                 <td className="p-2">
-                                    <select 
-                                        name="subjectName"
-                                        value={formData.subjectName}
-                                        onChange={handleChange}
-                                        className="w-full border p-1 rounded"
-                                        required
-                                    >   
-                                        <option value="">Chọn môn học</option>
-                                        {subjectData.map(data => (
-                                            <option key={data.id} value={data.subjectName}>
-                                                {data.subjectName}
-                                            </option>   
-                                        ))}
-                                    </select>
+                                    {subjectName}
                                 </td>
                                 <td className="p-2">
                                     <input name="startLesson" type="number" min="1" max="12" value={formData.startLesson} onChange={handleChange} className="w-full border p-1 rounded" required />

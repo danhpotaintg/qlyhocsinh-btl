@@ -64,7 +64,7 @@ export default function TeacherInfo(){
                             <td className="border p-2">{gender[data.gender]}</td>
                             <td className="border p-2">{data.email}</td>
                             <td className="border p-2">{data.phoneNumber}</td>
-                            <td className="border p-2">{subject[data.subjectName]}</td>
+                            <td className="border p-2">{data.subjectName}</td>
                             <td className="border p-2">{data.className}</td>
                         </tr>
                     </tbody>

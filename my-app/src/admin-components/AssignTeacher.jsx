@@ -123,7 +123,7 @@ export default function AssignTeacher() {
                                         >
                                             {schedule && (
                                                 <div className="flex flex-col">
-                                                    <span className="font-bold text-blue-900">{subject[schedule.subjectName] || schedule.subjectName}</span>
+                                                    <span className="font-bold text-blue-900">{schedule.subjectName}</span>
                                                     <span className="text-xs font-semibold text-gray-500">Lớp: {schedule.className}</span>
                                                     <div className="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-10 flex items-center justify-center transition-all">
                                                         <span className="text-[10px] text-blue-700 font-bold opacity-0 group-hover:opacity-100 uppercase mt-12">Chọn thay thế</span>
@@ -145,7 +145,7 @@ export default function AssignTeacher() {
                         <div className="bg-blue-600 p-5 text-white flex justify-between items-center shadow-lg">
                             <div>
                                 <h3 className="font-bold text-xl uppercase italic">Phân công thay thế</h3>
-                                <p className="text-xs text-blue-100 mt-1">Môn: {subject[selectedSchedule?.subjectName]} | Lớp: {selectedSchedule?.className}</p>
+                                <p className="text-xs text-blue-100 mt-1">Môn: {selectedSchedule?.subjectName} | Lớp: {selectedSchedule?.className}</p>
                             </div>
                             <button onClick={() => setIsModalOpen(false)} className="hover:rotate-90 transition-transform duration-200 text-3xl font-light">&times;</button>
                         </div>
@@ -196,7 +196,7 @@ export default function AssignTeacher() {
                                                 <p className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors">{t.fullName}</p>
                                                 <div className="flex gap-3 mt-1 text-[10px] font-bold uppercase">
                                                     <span className="text-slate-400 tracking-tighter">ID: {t.id}</span>
-                                                    <span className="text-blue-500">{subject[t.subjectName]}</span>
+                                                    <span className="text-blue-500">{t.subjectName}</span>
                                                 </div>
                                             </div>
                                             <button 

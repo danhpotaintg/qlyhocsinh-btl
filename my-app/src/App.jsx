@@ -84,7 +84,7 @@ function App() {
              <Route path="admin/classes/assign-student" element={<StudentClass />} /> 
              <Route path="admin/classes/assign-teacher-class" element={<HomeroomTeacherClass />} /> 
              <Route path="admin/classes/schedule" element={<ScheduleDetails />} /> 
-             <Route path="admin/classes/schedule/:teacherId/:classId" element={<CreateSchedules />} /> 
+             <Route path="admin/classes/schedule/:teacherId/:classId/:subjectName" element={<CreateSchedules />} /> 
              <Route path="admin/classes/assign-teacher" element={<TeacherSubstitution />} />  
              <Route path="admin/classes/assign-teacher/:teacherId" element={<AssignTeacher />} />
              <Route path="admin/notifications" element={<CreateNotification />} /> 
@@ -92,7 +92,7 @@ function App() {
              <Route path="profile/student-info" element={<StudentInfo />} /> 
              <Route path="profile/student-update" element={<StudentUpdate />} />
              <Route path="student/grades" element={<StudentSubjectList />} />
-             <Route path="student/grade/:subjectId/:semester" element={<StudentGrade />} />
+             <Route path="student/grade/:subjectId/:semester/:academicYear" element={<StudentGrade />} />
              <Route path="student/schedule/weekly" element={<StudentSchedule />} />
              <Route path="student/leave-request" element={<CreateLeaveRequest />} />
 

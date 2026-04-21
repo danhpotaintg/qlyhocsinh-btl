@@ -53,34 +53,48 @@ export default function StudentGrade() {
                     </thead>
                     <tbody>
                         {gradeData?.gradeConfigs && gradeData.gradeConfigs.length > 0 ? (
-                            gradeData.gradeConfigs.map((config) => (
-                                <tr key={config.gradeConfigId} className="hover:bg-gray-50 border-b">
-                                    <td className="border p-3 font-medium">
-                                        {config.scoreType === 'thuong_xuyen' ? 'Điểm thường xuyên' : 
-                                         config.scoreType === 'giua_ky' ? 'Kiểm tra giữa kỳ' : 
-                                         config.scoreType === 'cuoi_ky' ? 'Kiểm tra cuối kỳ' : config.scoreType}
-                                    </td>
-                                    <td className="border p-3 text-center text-gray-600">
-                                        {config.weight}
+                            <>
+                                {gradeData.gradeConfigs.map((config) => (
+                                    <tr key={config.gradeConfigId} className="hover:bg-gray-50 border-b">
+                                        <td className="border p-3 font-medium">
+                                            {config.scoreType === 'thuong_xuyen' ? 'Điểm thường xuyên' : 
+                                            config.scoreType === 'giua_ky' ? 'Kiểm tra giữa kỳ' : 
+                                            config.scoreType === 'cuoi_ky' ? 'Kiểm tra cuối kỳ' : config.scoreType}
+                                        </td>
+                                        <td className="border p-3 text-center text-gray-600">
+                                            {config.weight}
+                                        </td>
+                                        <td className="border p-3">
+                                            <div className="flex flex-wrap gap-2">
+                                                {config.scores && config.scores.length > 0 ? (
+                                                    config.scores.map((score, index) => (
+                                                        <span 
+                                                            key={index} 
+                                                            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold shadow-sm"
+                                                        >
+                                                            {score}
+                                                        </span>
+                                                    ))
+                                                ) : (
+                                                    <span className="text-gray-400 italic">Chưa có điểm</span>
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+
+                                {/* Thêm hàng hiển thị điểm trung bình học kỳ */}
+                                <tr className="hover:bg-gray-50 border-b ">
+                                    <td colSpan="2" className="border p-3 font-medium ">
+                                        Điểm trung bình học kỳ
                                     </td>
                                     <td className="border p-3">
-                                        <div className="flex flex-wrap gap-2">
-                                            {config.scores && config.scores.length > 0 ? (
-                                                config.scores.map((score, index) => (
-                                                    <span 
-                                                        key={index} 
-                                                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold shadow-sm"
-                                                    >
-                                                        {score}
-                                                    </span>
-                                                ))
-                                            ) : (
-                                                <span className="text-gray-400 italic">Chưa có điểm</span>
-                                            )}
-                                        </div>
+                                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold shadow-sm">
+                                        {gradeData?.semesterAverage || "Chưa có"}
+                                        </span>
                                     </td>
                                 </tr>
-                            ))
+                            </>
                         ) : (
                             <tr>
                                 <td colSpan="3" className="text-center p-10 text-gray-500">

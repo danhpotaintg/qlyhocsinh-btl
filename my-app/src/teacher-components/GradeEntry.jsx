@@ -3,19 +3,18 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function GradeEntry() {
-    const subject = {
-        "Math": "Toán",
-        "English": "Tiếng Anh",
-        "Physics": "Vật lý",
-        "Chemistry": "Hoá học",
-        "Literature": "Ngữ văn" 
-    }
     const { studentId } = useParams();
     const [configs, setConfigs] = useState([]);
     const [teacherSubject, setTeacherSubject] = useState([]);
     const [selectedConfig, setSelectedConfig] = useState(null);
     const [subjectId, setSubjectId] = useState("");
     const [err, setErr] = useState("");
+
+    const [selection, setSelection] = useState({
+        academicYear: "",
+        semester: ""
+    });
+
     const [formData, setFormData] = useState({
         gradeConfigId: '',
         entryIndex: 1,
@@ -44,22 +43,38 @@ export default function GradeEntry() {
 
 
     useEffect(() => {
-        const fetchConfigs = async () => {
-            if (!subjectId) return;
+    const fetchConfigs = async () => {
+            if (!subjectId || !selection.academicYear || !selection.semester) return;
 
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`/quanly/gradeConfigs/bulk/${subjectId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                const res = await axios.get(
+                    `/quanly/gradeConfigs/bulk-year-semseter/${subjectId}?academicYear=${selection.academicYear}&semester=${selection.semester}`, 
+                    { headers: { Authorization: `Bearer ${token}` } }
+                );
                 
                 setConfigs(res.data.result.configs || []);
             } catch (error) {
                 console.error("Lỗi lấy cấu hình điểm:", error);
+                setConfigs([]); 
             }
         };
         fetchConfigs();
-    }, [subjectId]);
+    }, [subjectId, selection]);
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        if (value && value !== "-") {
+            const [year, sem] = value.split('-'); 
+            setSelection({
+                academicYear: year,
+                semester: sem
+            });
+        } else {
+            setSelection({ academicYear: "", semester: "" });
+            setConfigs([]); 
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -83,10 +98,24 @@ export default function GradeEntry() {
         }
     };
 
+
     return (
         <form onSubmit={handleSubmit} className="p-6 bg-white shadow rounded">
-            <h2 className="text-xl font-bold mb-4">Nhập điểm môn {subject[teacherSubject.subjectName]} cho học sinh</h2>
+            <h2 className="text-xl font-bold mb-4">Nhập điểm môn {teacherSubject.subjectName} cho học sinh</h2>
             {err && <div className="text-red-500 bg-red-50 p-2 rounded mb-4">{err}</div>}
+            <div>
+                <select 
+                    className="mb-4 p-2 border rounded border-gray-300"
+                    onChange={handleChange}
+                    value={`${selection.academicYear}-${selection.semester}`}
+                >
+                    <option value="-">-- Chọn năm học và học kỳ --</option>
+                    <option value="2024-1">Học kì 1 năm 2024</option>
+                    <option value="2024-2">Học kì 2 năm 2024</option>
+                    <option value="2025-1">Học kì 1 năm 2025</option>
+                    <option value="2025-1">Học kì 2 năm 2025</option>
+                </select>
+            </div>
             {/* 1. Chọn loại điểm */}
             <div className="mb-4">
                 <label>Loại điểm:</label>

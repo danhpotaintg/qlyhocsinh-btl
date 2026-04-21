@@ -8,14 +8,6 @@ export default function ScheduleDetails(){
         "FEMALE": "Nữ"
     };
 
-    const subject = {
-        "Math": "Toán",
-        "English": "Tiếng Anh",
-        "Physics": "Vật lý",
-        "Chemistry": "Hoá học",
-        "Literature": "Ngữ văn" 
-    }
-
     
 
     const [classes, setClasses] = useState([]);
@@ -66,7 +58,7 @@ export default function ScheduleDetails(){
                             <td className="border p-2 text-center w-16">{user.fullName}</td>
                             <td className="border p-2 text-center w-16">{user.dob}</td>
                             <td className="border p-2 text-center w-16">{gender[user.gender]}</td>
-                            <td className="border p-2 text-center w-16">{subject[user.subjectName]}</td>
+                            <td className="border p-2 text-center w-16">{user.subjectName}</td>
                             <td className="border p-2 text-center w-16">
                                 <select 
                                     className="border p-1 rounded"
@@ -84,7 +76,7 @@ export default function ScheduleDetails(){
                             </td>
                             <td className="border p-2 text-center w-16">
                                 <Link 
-                                    to={`/admin/classes/schedule/${user.id}/${classSelected[user.id]}`} 
+                                    to={`/admin/classes/schedule/${user.id}/${classSelected[user.id]}/${user.subjectName}`} 
                                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                                 >
                                     Xem TKB 

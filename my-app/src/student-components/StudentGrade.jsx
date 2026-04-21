@@ -14,18 +14,21 @@ export default function StudentGrade() {
     const [err, setErr] = useState("");
     const [gradeData, setGradeData] = useState(null);
 
-    const {subjectId, semester} = useParams();
+    const {subjectId, semester, academicYear} = useParams();
 
     const fetchGradeData = async() => {
+        if (!subjectId || !semester || !academicYear) return;
+        
         try{
             if (!subjectId) return;
 
             const token = localStorage.getItem('token');
-            const response = await axios.get(`/quanly/grades/student/subject/${subjectId}?semester=${semester}`,{
+            const response = await axios.get(`/quanly/grades/student/subject/${subjectId}?academicYear=${academicYear}&semester=${semester}`,{
                 headers: { Authorization: `Bearer ${token}` }
             });
 
             setGradeData(response.data.result);
+            console.log("data"+response.data.result);
 
         }catch(error){
             console.error("Môn này chưa có điểm", error);
@@ -33,7 +36,7 @@ export default function StudentGrade() {
     }
     useEffect(() => {
         fetchGradeData();
-    }, [subjectId, semester])
+    }, [subjectId, semester, academicYear])
 
     return (
         <div className="p-4">
